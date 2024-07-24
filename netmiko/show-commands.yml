@@ -1,0 +1,5 @@
+---
+commands:
+  - "show ip route"
+  - "show arp eth0"
+...

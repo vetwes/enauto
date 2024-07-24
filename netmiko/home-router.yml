@@ -1,0 +1,7 @@
+---
+devices:
+  - ip: "172.16.1.1"
+    platform: "ubiquiti_edgerouter"
+    username: "user" #placeholder
+    password: "password" #placeholder
+...
