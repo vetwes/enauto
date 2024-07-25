@@ -1,0 +1,32 @@
+---
+- name: "Run some show commands"
+  hosts: routers
+  connection: network_cli
+  tasks:
+    - name: "Task 1: Get routing table"
+      community.network.edgeos_command:
+        commands: "show ip route"
+      register: routing_table
+
+    - name: "Task 2: Get interface info"
+      community.network.edgeos_command:
+        commands: "show interfaces ethernet eth0"
+      register: interface
+
+    - name: "Task 3: Make a directory for output"
+      file: 
+        path: "output"
+        state: directory
+      run_once: true
+
+    - name: "Task 4: Output routing table to file"
+      copy:
+        content: "{{ routing_table.stdout[0] }}\n"
+        dest: "output/routing_table.txt"
+
+    - name: "Task 5: Output interface to file"
+      copy:
+        content: "{{ interface.stdout[0] }}\n"
+        dest: "output/interface.txt"
+      
+...
